@@ -33,4 +33,32 @@ inline void resetAllModules() {
   setModule("upgrade",0);
 }
 
+inline std::string getCurrentVersion() {
+  std::ifstream src;
+  std::string ret;
+  src.open(PEACH_FOLDER+"sources/current",std::ios_base::in);
+  src>>ret;
+  src.close();
+  return ret;
+}
+
+inline std::string getNewVersion() {
+  std::ifstream src;
+  std::string ret;
+  src.open(PEACH_FOLDER+"sources/upgrade",std::ios_base::in);
+  src>>ret;
+  src.close();
+  return ret;
+}
+
+inline void setCurrentVersion() {
+  std::ofstream src_c,src_u;
+  src_c.open(PEACH_FOLDER+"sources/current",std::ios_base::out);
+  src_c<<getNewVersion()<<std::endl;
+  src_c.close();
+  src_u.open(PEACH_FOLDER+"sources/upgrade",std::ios_base::out);
+  src_u<<std::endl;
+  src_u.close();
+}
+
 #endif

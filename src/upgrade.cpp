@@ -16,12 +16,17 @@ private:
   Gui::LabelButton* yes_btn;
   Gui::LabelButton* no_btn;
   Gui::ProgressWait* wait;
-  bool upgrade_available=true;
+  bool upgrade_available=false;
   bool call=false;
   int scene=0;
   int t;
 public:
   Upgrade() {
+    if(getCurrentVersion()==getNewVersion()) {
+      upgrade_available=false;
+    } else {
+      upgrade_available=true;
+    }
     create("Upgrade",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,870,165,SDL_WINDOW_BORDERLESS,{25,25,25,255});
     setWindowOpacity(0.99f);
     setDragSupport(true);
@@ -64,14 +69,14 @@ public:
         upgrading_text->display();
         if(!call) {
           setModule("upgrade-action",0);
-          t=std::system(("~/"+PEACH_FOLDER+"bin/upgrade-action upgrade &").c_str());
+          t=std::system(("gksudo \'~/"+PEACH_FOLDER+"bin/upgrade-action upgrade\' &").c_str());
           call=true;
         }
       } else {
         updating_text->display();
         if(!call) {
           setModule("upgrade-action",0);
-          t=std::system(("~/"+PEACH_FOLDER+"bin/upgrade-action update &").c_str());
+          t=std::system(("gksudo \'~/"+PEACH_FOLDER+"bin/upgrade-action update\' &").c_str());
           call=true;
         }
       }
