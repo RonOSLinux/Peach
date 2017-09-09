@@ -21,10 +21,15 @@ int main(int argc,char* argv[]) {
     src_in.close();
 
     src_out.open("/etc/apt/sources.list",std::ios_base::out);
+    if(!src_out.is_open()) {
+      printf("%s\n","Why???");
+    }
     for(std::string t: in) {
       src_out<<std::regex_replace(t,std::regex(regex_1),regex_2)<<std::endl;
     }
     src_out.close();
+  } else {
+    printf("%s\n","update-sources [old version] [new version]");
   }
   return 0;
 }

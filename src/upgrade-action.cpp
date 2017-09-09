@@ -13,9 +13,10 @@ int main(int argc,char const *argv[]) {
     std::string mode;
     mode=argv[1];
     if(mode=="update") {
+      t=std::system("gksudo \'apt-get --assume-yes update\'");
       t=std::system("gksudo \'apt-get --assume-yes dist-upgrade\'");
     } else if(mode=="upgrade") {
-      t=std::system(("gksudo \'~/"+PEACH_FOLDER+"bin/update-sources "+getCurrentVersion()+" "+getNewVersion()+"\'").c_str());
+      t=std::system(("gksudo \'update-sources "+getCurrentVersion()+" "+getNewVersion()+"\'").c_str());
       t=std::system("gksudo \'apt-get --assume-yes update\'");
       t=std::system("gksudo \'apt-get --assume-yes dist-upgrade\'");
     }
