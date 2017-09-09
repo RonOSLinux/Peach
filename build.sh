@@ -24,3 +24,4 @@ g++ -std=c++14 -Os ./src/software-action.cpp -o ./bin/software-action
 # not started
 g++ -std=c++14 -Os ./src/upgrade.cpp -o ./bin/upgrade -lSDL2 -lSDL2_image -lSDL2_ttf
 g++ -std=c++14 -Os ./src/upgrade-action.cpp -o ./bin/upgrade-action
+g++ -std=c++14 -Os ./src/update-sources.cpp -o ./bin/update-sources

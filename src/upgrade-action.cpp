@@ -13,26 +13,11 @@ int main(int argc,char const *argv[]) {
     std::string mode;
     mode=argv[1];
     if(mode=="update") {
-      t=std::system("apt-get --assume-yes dist-upgrade");
+      t=std::system("gksudo \'apt-get --assume-yes dist-upgrade\'");
     } else if(mode=="upgrade") {
-      std::vector<std::string> in;
-      std::string temp;
-      std::ifstream src_in;
-      std::ofstream src_out;
-      src_in.open("/etc/apt/sources.list",std::ios_base::in);
-      while(!src_in.eof()) {
-        std::getline(src_in,temp);
-        in.push_back(temp);
-      }
-      src_in.close();
-      src_out.open("/etc/apt/sources.list");
-      for(std::string t: in) {
-        src_out<<std::regex_replace(t,std::regex(getCurrentVersion()),getNewVersion())<<std::endl;
-      }
-      src_out.close();
-      t=std::system("apt-get --assume-yes update");
-      t=std::system("apt-get --assume-yes dist-upgrade");
-      setCurrentVersion();
+      t=std::system(("gksudo \'~/"+PEACH_FOLDER+"bin/update-sources "+getCurrentVersion()+" "+getNewVersion()+"\'").c_str());
+      t=std::system("gksudo \'apt-get --assume-yes update\'");
+      t=std::system("gksudo \'apt-get --assume-yes dist-upgrade\'");
     }
     setModule("upgrade-action",1);
   }

@@ -69,18 +69,19 @@ public:
         upgrading_text->display();
         if(!call) {
           setModule("upgrade-action",0);
-          t=std::system(("gksudo \'~/"+PEACH_FOLDER+"bin/upgrade-action upgrade\' &").c_str());
+          t=std::system(("~/"+PEACH_FOLDER+"bin/upgrade-action upgrade &").c_str());
           call=true;
         }
       } else {
         updating_text->display();
         if(!call) {
           setModule("upgrade-action",0);
-          t=std::system(("gksudo \'~/"+PEACH_FOLDER+"bin/upgrade-action update\' &").c_str());
+          t=std::system(("~/"+PEACH_FOLDER+"bin/upgrade-action update &").c_str());
           call=true;
         }
       }
       if(getModule("upgrade-action")==1) {
+        setCurrentVersion();
         scene=2;
       }
     } else if(scene==2) {
