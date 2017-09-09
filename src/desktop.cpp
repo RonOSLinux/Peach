@@ -23,7 +23,7 @@ public:
       alpha_state=0.0f;
       blend_timer=SDL_GetTicks();
     }
-    add(new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/preferences-system-login.svg"),getWindowSize()[0]/2-64,getWindowSize()[1]/2-64,64,64));
+    add(new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/preferences-system-login.svg"),getWindowSize()[0]/2-32,getWindowSize()[1]/2-32,64,64));
     show();
   }
   void check() {}
