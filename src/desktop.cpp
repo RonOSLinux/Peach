@@ -1,4 +1,5 @@
 #include "../inc/Gui/gui.h"
+#include "../inc/SDL_svg.h"
 #include "../inc/const.h"
 #include <iostream>
 #include <string>
@@ -22,7 +23,7 @@ public:
       alpha_state=0.0f;
       blend_timer=SDL_GetTicks();
     }
-    add(new Gui::Image(IMG_Load((PEACH_FOLDER+"res/logo.png").c_str()),getWindowSize()[0]/2-64,getWindowSize()[1]/2-64,128,128));
+    add(new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/preferences-system-login.svg"),getWindowSize()[0]/2-64,getWindowSize()[1]/2-64,64,64));
     show();
   }
   void check() {}
