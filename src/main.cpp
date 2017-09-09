@@ -14,12 +14,20 @@ int main(int argc,char* argv[]) {
 
     resetAllModules();
 
+    //Update Current Version
+    std::remove(("~/"+PEACH_FOLDER+"sources/upgrade").c_str());
+    t=std::system(("wget -O ~/"+PEACH_FOLDER+"sources/upgrade https://raw.githubusercontent.com/RonOSLinux/Peach/master/sources/upgrade").c_str());
+
     t=std::system(("~/"+PEACH_FOLDER+"bin/desktop fade-in").c_str());
     if(getModule("tutorial")==0) {
       t=std::system(("~/"+PEACH_FOLDER+"bin/tutorial").c_str());
     }
     t=std::system(("~/"+PEACH_FOLDER+"bin/panel &").c_str());
     setModule("panel",1);
+    if(getCurrentVersion()!=getNewVersion()) {
+      t=std::system(("~/"+PEACH_FOLDER+"bin/upgrade &").c_str());
+      setModule("upgrade",1);
+    }
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_GetCurrentDisplayMode(0,&dm);
