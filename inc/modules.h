@@ -52,13 +52,10 @@ inline std::string getNewVersion() {
 }
 
 inline void setCurrentVersion() {
-  std::ofstream src_c,src_u;
+  std::ofstream src_c;
   src_c.open(PEACH_FOLDER+"sources/current",std::ios_base::out);
   src_c<<getNewVersion()<<std::endl;
   src_c.close();
-  src_u.open(PEACH_FOLDER+"sources/upgrade",std::ios_base::out);
-  src_u<<std::endl;
-  src_u.close();
 }
 
 #endif
