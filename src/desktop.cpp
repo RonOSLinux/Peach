@@ -23,11 +23,14 @@ public:
       alpha_state=0.0f;
       blend_timer=SDL_GetTicks();
     }
-    add(new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/preferences-system-login.svg"),getWindowSize()[0]/2-32,getWindowSize()[1]/2-32,64,64));
+    add(new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/tux.svg"),getWindowSize()[0]/2-32,getWindowSize()[1]/2-32,64,64));
+    add(new Gui::Label("RonOS",Gui::f_light_big,{125,125,125},0,0));
     show();
   }
   void check() {}
   void draw() {
+    get(1)->setX(getWindowSize()[0]/2-get(1)->getWidth()/2);
+    get(1)->setY(getWindowSize()[1]/2-get(1)->getHeight()/2+64);
     if(blend_mode==0) {
       if(SDL_GetTicks()-blend_timer>=40) {
         if(alpha_state>0.0f) {
@@ -57,6 +60,7 @@ int main(int argc,char* argv[]) {
     std::string param;
     param=argv[1];
     Gui::init();
+    Gui::loadFonts("/usr/share/fonts/truetype/Roboto-Regular.ttf","/usr/share/fonts/truetype/Roboto-Thin.ttf");
     if(param=="fade-in") {
       Desktop dsk=Desktop(0);
     } else if(param=="fade-out") {
