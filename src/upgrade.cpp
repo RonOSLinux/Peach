@@ -33,8 +33,8 @@ public:
     } else {
       scene=3;
     }
-    create("Upgrade",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,870,165,SDL_WINDOW_BORDERLESS,{25,25,25,255});
-    setWindowOpacity(0.99f);
+    create("Upgrade",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,870,165,SDL_WINDOW_BORDERLESS,{5,5,5,255});
+    setWindowOpacity(0.95f);
     setDragSupport(true);
     update_text=new Gui::Label("There is no Upgrade available, but you can still Update your packages.",Gui::f_light_med,{215,215,215},10,10);
     upgrade_text=new Gui::Label("There is an Upgrade available, the installation will take a while.",Gui::f_light_med,{215,215,215},10,10);
@@ -54,6 +54,7 @@ public:
   }
   void check() {}
   void draw() {
+    Gui::renderFillRect(0,0,870,2,Gui::hover_color);
     if(scene==0) {
       if(upgrade_available) {
         upgrade_text->display();
@@ -61,7 +62,7 @@ public:
         update_text->display();
       }
       continue_text->display();
-      Gui::renderFillRect(0,110,870,95,{28,28,28,255});
+      Gui::renderFillRect(0,110,870,95,{10,10,10,255});
       yes_btn->display();
       if(yes_btn->getEvent()==2) {
         scene=1;
@@ -95,7 +96,7 @@ public:
     } else if(scene==2) {
       reboot_text->display();
       reboot_now_text->display();
-      Gui::renderFillRect(0,110,870,95,{28,28,28,255});
+      Gui::renderFillRect(0,110,870,95,{10,10,10,255});
       yes_btn->display();
       if(yes_btn->getEvent()==2) {
         setModule("action",2);
@@ -108,7 +109,7 @@ public:
     } else if(scene=3) {
       connection_error_text->display();
       retry_connection_text->display();
-      Gui::renderFillRect(0,110,870,95,{28,28,28,255});
+      Gui::renderFillRect(0,110,870,95,{10,10,10,255});
       yes_btn->display();
       if(yes_btn->getEvent()==2) {
         std::remove(("~/"+PEACH_FOLDER+"sources/upgrade").c_str());
@@ -128,14 +129,14 @@ public:
         setEnd(true);
       }
     }
-    Gui::renderDrawRect(0,0,870,165,{0,185,255,95});
   }
 };
 
 int main(int argc,char const *argv[]) {
   Gui::init();
   Gui::loadFonts("/usr/share/fonts/truetype/Roboto-Regular.ttf","/usr/share/fonts/truetype/Roboto-Light.ttf");
-  Gui::normal_color={45,45,45,255};
+  Gui::normal_color={10,10,10,255};
+  Gui::hover_color.a=255;
   Upgrade upgrade;
   Gui::quit();
   setModule("upgrade",0);

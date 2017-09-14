@@ -15,8 +15,8 @@ private:
   int t;
 public:
   Apps() {
-    create("Apps",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,538,400,SDL_WINDOW_BORDERLESS,{245,245,245,255});
-    setWindowOpacity(0.99f);
+    create("Apps",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,538,400,SDL_WINDOW_BORDERLESS,{5,5,5,255});
+    setWindowOpacity(0.9f);
     setDragSupport(true);
 
     add(new Gui::ExitBtn("/usr/share/fonts/truetype/Roboto-Thin.ttf",493,-7));
@@ -52,6 +52,7 @@ public:
   }
   void check() {}
   void draw() {
+    Gui::renderFillRect(0,0,538,2,{0,185,235,255});
     if(get(0)->getEvent()==2) {
       setEnd(true);
     }
@@ -71,8 +72,8 @@ public:
     if(!t) {
       active_cat=-1;
     }
-    Gui::renderFillRect(5,58,528,337,{235,235,235,195});
-    Gui::renderFillRect(485,5,48,48,{235,235,235,195});
+    Gui::renderFillRect(5,58,528,337,{15,15,15,195});
+    Gui::renderFillRect(485,5,48,48,{15,15,15,195});
     if(active_cat==-1) {
       no_cat->display();
     } else {
@@ -96,6 +97,7 @@ public:
           app_btns.at(i)->display();
           if(app_btns.at(i)->getEvent()==2) {
             t=std::system((appf.getExecPath(appf.getAvailableApps().at(i))+" &").c_str());
+            setEnd(true);
           }
           app_tips.at(i)->update();
           app_tips.at(i)->display();
@@ -108,7 +110,8 @@ public:
 int main(int argc,char* argv[]) {
   Gui::init();
   Gui::loadFonts("/usr/share/fonts/truetype/Roboto-Regular.ttf","/usr/share/fonts/truetype/Roboto-Light.ttf");
-  Gui::normal_color={215,215,215,185};
+  Gui::normal_color={15,15,15,195};
+  Gui::hover_color={35,35,35,255};
   Apps apps;
   Gui::quit();
   setModule("apps",0);

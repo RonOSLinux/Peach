@@ -28,8 +28,8 @@ private:
   int t;
 public:
   Software() {
-    create("SoftwareExplorer",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,538,469,SDL_WINDOW_BORDERLESS,{245,245,245,255});
-    setWindowOpacity(0.99f);
+    create("SoftwareExplorer",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,538,469,SDL_WINDOW_BORDERLESS,{5,5,5,255});
+    setWindowOpacity(0.9f);
     setDragSupport(true);
     appf.init();
     sources::init();
@@ -71,6 +71,7 @@ public:
   }
   void check() {}
   void draw() {
+    Gui::renderFillRect(0,0,538,2,{0,185,235,255});
     if(!process) {
       if(get(0)->getEvent()==2) {
         setEnd(true);
@@ -91,8 +92,8 @@ public:
       if(!t) {
         active_cat=-1;
       }
-      Gui::renderFillRect(5,58,528,337,{235,235,235,195});
-      Gui::renderFillRect(485,5,48,48,{235,235,235,195});
+      Gui::renderFillRect(5,58,528,337,{15,15,15,195});
+      Gui::renderFillRect(485,5,48,48,{15,15,15,195});
       if(active_cat==-1) {
         no_cat->display();
       } else {
@@ -134,13 +135,13 @@ public:
           }
         }
       }
-      Gui::renderFillRect(5,400,528,64,{235,235,235,145});
+      Gui::renderFillRect(5,400,528,64,{15,15,15,195});
       if(active_cat!=-1) {
         if(active_app==-1) {
           no_app->display();
         } else {
-          Gui::normal_color={215,215,215,0};
-          Gui::hover_color={235,235,235,0};
+          Gui::normal_color={15,15,15,195};
+          Gui::hover_color={35,35,35,255};
           app_img->display();
           app_name->setX(74);
           app_name->setY(406);
@@ -163,13 +164,15 @@ public:
           }
         }
       }
-      Gui::normal_color={215,215,215,185};
-      Gui::hover_color={0,185,235,185};
+      Gui::normal_color={15,15,15,195};
+      Gui::hover_color={35,35,35,255};
     } else {
+      Gui::normal_color={35,35,35,195};
+      Gui::hover_color={0,185,235,255};
       for(int i=0;i<10;i++) {
         ((Gui::CheckButton*)get(i+1))->setActive(false);
       }
-      Gui::renderFillRect(5,58,528,406,{235,235,235,195});
+      Gui::renderFillRect(5,58,528,406,{15,15,15,195});
       if(!app_installed) {
         installing->display();
         app_name->setX(538/2-app_name->getWidth()/2);
@@ -197,7 +200,8 @@ public:
 int main(int argc,char* argv[]) {
   Gui::init();
   Gui::loadFonts("/usr/share/fonts/truetype/Roboto-Regular.ttf","/usr/share/fonts/truetype/Roboto-Light.ttf");
-  Gui::normal_color={215,215,215,185};
+  Gui::normal_color={15,15,15,195};
+  Gui::hover_color={35,35,35,255};
   Software software;
   Gui::quit();
   setModule("software",0);

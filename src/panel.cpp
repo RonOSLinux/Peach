@@ -37,8 +37,8 @@ public:
 
     old_date=getDate();
     old_time=getTime();
-    add(new Gui::Label(old_time.c_str(),Gui::f_reg_big,{225,225,225},40,14));
-    add(new Gui::Label(old_date.c_str(),Gui::f_light_med,{195,195,195},8,60));
+    add(new Gui::Label(old_time.c_str(),Gui::f_reg_big,{255,255,255},40,14));
+    add(new Gui::Label(old_date.c_str(),Gui::f_light_med,{225,225,225},8,60));
     add(new Gui::Button(new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/32x32/apps/yast.svg"),0,0,32,32),12,224,32,32));
     add(new Gui::Button(new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/32x32/apps/internet-web-browser.svg"),0,0,32,32),47,224,32,32));
     add(new Gui::Button(new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/32x32/apps/utilities-terminal.svg"),0,0,32,32),82,224,32,32));
@@ -49,7 +49,6 @@ public:
   void check() {}
   void draw() {
     Gui::renderFillRect(0,0,161,2,Gui::hover_color);
-    Gui::normal_color={10,10,10,255};
     if(getTime()!=old_time) {
       ((Gui::Label*)get(0))->setText(getTime().c_str(),Gui::f_reg_big,{225,225,225});
       old_time=getTime();
