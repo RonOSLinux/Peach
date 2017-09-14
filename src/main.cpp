@@ -64,9 +64,12 @@ int main(int argc,char* argv[]) {
             setModule("shutdown",1);
           }
         } else if(mx>dm.w/2-368/2&&mx<(dm.w/2-368/2)+368&&my==dm.h-1) {
-          if(getModule("panel")!=1) {
-            t=std::system(("~/"+PEACH_FOLDER+"bin/panel &").c_str());
-            setModule("panel",1);
+          if(getModule("panel")!=2) {
+            setModule("panel",2);
+          }
+        } else if(mx>dm.w/2-368/2&&mx<(dm.w/2-368/2)+368&&my==0) {
+          if(getModule("panel")!=2) {
+            setModule("panel",2);
           }
         }
       }
