@@ -72,6 +72,10 @@ private:
   Gui::Image* software_img;
   Gui::Image* restart_img;
   Gui::Image* shutdown_img;
+  Gui::Label* app_label;
+  Gui::Label* software_label;
+  Gui::Label* restart_label;
+  Gui::Label* shutdown_label;
   HiddenPart* hotcorners_hide;
 
   Gui::Label* thanks_text;
@@ -87,15 +91,19 @@ public:
     skip_text=new Gui::Label("To Skip the Tutorial press Alt+F4!",Gui::f_light_med,{215,215,215},0,0);
     skip_text_hide=new HiddenPart(Gui::dm.w/2-400,Gui::dm.h/2-100,800,200);
 
-    mainpanel_text=new Gui::Label("To Open the Main-Panel move your Mouse down!",Gui::f_light_med,{215,215,215},0,0);
+    mainpanel_text=new Gui::Label("To Raise the Main-Panel move your Mouse down!",Gui::f_light_med,{215,215,215},0,0);
     mainpanel_img=new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/cs-panel.svg"),Gui::dm.w/2-32,Gui::dm.h-74,64,64);
     mainpanel_hide=new HiddenPart(0,0,Gui::dm.w,Gui::dm.h);
 
     hotcorners_text=new Gui::Label("Move your Mouse into the Corners to Quickstart Apps!",Gui::f_light_med,{215,215,215},0,0);
     app_img=new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/preferences-system-login.svg"),10,10,64,64);
+    app_label=new Gui::Label("Apps",Gui::f_light_med,{195,195,195},80,26);
     software_img=new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/software-store.svg"),Gui::dm.w-74,10,64,64);
+    software_label=new Gui::Label("Software",Gui::f_light_med,{195,195,195},Gui::dm.w-195,26);
     restart_img=new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/system-reboot.svg"),10,Gui::dm.h-74,64,64);
+    restart_label=new Gui::Label("Restart",Gui::f_light_med,{195,195,195},80,Gui::dm.h-58);
     shutdown_img=new Gui::Image(SDL_LoadSVGFromFile("/usr/share/icons/Papirus/64x64/apps/system-shutdown.svg"),Gui::dm.w-74,Gui::dm.h-74,64,64);
+    shutdown_label=new Gui::Label("Shutdown",Gui::f_light_med,{195,195,195},Gui::dm.w-205,Gui::dm.h-58);
     hotcorners_hide=new HiddenPart(0,0,Gui::dm.w,Gui::dm.h);
 
     thanks_text=new Gui::Label("Thanks for using RonOS!",Gui::f_light_med,{215,215,215},0,0);
@@ -162,9 +170,13 @@ public:
       hotcorners_text->setY(Gui::dm.h/2-hotcorners_text->getHeight()/2);
       hotcorners_text->display();
       app_img->display();
+      app_label->display();
       software_img->display();
+      software_label->display();
       restart_img->display();
+      restart_label->display();
       shutdown_img->display();
+      shutdown_label->display();
       hotcorners_hide->display();
       if(SDL_GetTicks()-state_timer>=5500) {
         hotcorners_hide->setPos(2);
