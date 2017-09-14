@@ -31,7 +31,7 @@ private:
   int t;
 public:
   Panel() {
-    create("Panel",Gui::dm.w/2-161/2,Gui::dm.h/2-368/2,161,268,SDL_WINDOW_BORDERLESS,{5,5,5,255});
+    create("Panel",Gui::dm.w/2-161/2,Gui::dm.h/2-268/2,161,268,SDL_WINDOW_BORDERLESS,{5,5,5,255});
     setWindowOpacity(0.80f);
     setDragSupport(true);
 
