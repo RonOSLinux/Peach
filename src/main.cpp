@@ -24,9 +24,15 @@ int main(int argc,char* argv[]) {
     }
     t=std::system(("~/"+PEACH_FOLDER+"bin/panel &").c_str());
     setModule("panel",1);
-    if(getCurrentVersion()!=getNewVersion()) {
-      t=std::system(("~/"+PEACH_FOLDER+"bin/upgrade &").c_str());
-      setModule("upgrade",1);
+    //Fix Issue #2
+    if(getNewVersion()=="") {
+      setModule("network",0);
+    } else {
+      setModule("network",1);
+      if(getCurrentVersion()!=getNewVersion()) {
+        t=std::system(("~/"+PEACH_FOLDER+"bin/upgrade &").c_str());
+        setModule("upgrade",1);
+      }
     }
 
     SDL_Init(SDL_INIT_EVERYTHING);

@@ -13,6 +13,8 @@ private:
   Gui::Label* updating_text;
   Gui::Label* reboot_text;
   Gui::Label* reboot_now_text;
+  Gui::Label* connection_error_text;
+  Gui::Label* retry_connection_text;
   Gui::LabelButton* yes_btn;
   Gui::LabelButton* no_btn;
   Gui::ProgressWait* wait;
@@ -22,10 +24,14 @@ private:
   int t;
 public:
   Upgrade() {
-    if(getCurrentVersion()==getNewVersion()) {
-      upgrade_available=false;
+    if(getModule("network")==1) {
+      if(getCurrentVersion()==getNewVersion()) {
+        upgrade_available=false;
+      } else {
+        upgrade_available=true;
+      }
     } else {
-      upgrade_available=true;
+      scene=3;
     }
     create("Upgrade",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,870,165,SDL_WINDOW_BORDERLESS,{25,25,25,255});
     setWindowOpacity(0.99f);
@@ -38,6 +44,8 @@ public:
     warning_text=new Gui::Label("(Please don't poweroff the System.)",Gui::f_light_sma,{215,215,215},300,125);
     upgrading_text=new Gui::Label("Upgrading...",Gui::f_reg_med,{215,215,215},35,35);
     updating_text=new Gui::Label("Updating...",Gui::f_reg_med,{215,215,215},35,35);
+    connection_error_text=new Gui::Label("Connection Failed! It seems like you aren't connected!",Gui::f_light_med,{215,215,215},10,10);
+    retry_connection_text=new Gui::Label("Retry now?",Gui::f_reg_med,{215,215,215},10,50);
     yes_btn=new Gui::LabelButton("Yes",Gui::f_light_med,{215,215,215},120,120);
     no_btn=new Gui::LabelButton("No",Gui::f_light_med,{215,215,215},700,120);
     wait=new Gui::ProgressWait(15,165/2+25,840);
@@ -92,6 +100,28 @@ public:
       if(yes_btn->getEvent()==2) {
         setModule("action",2);
         setEnd(true);
+      }
+      no_btn->display();
+      if(no_btn->getEvent()==2) {
+        setEnd(true);
+      }
+    } else if(scene=3) {
+      connection_error_text->display();
+      retry_connection_text->display();
+      Gui::renderFillRect(0,110,870,95,{28,28,28,255});
+      yes_btn->display();
+      if(yes_btn->getEvent()==2) {
+        std::remove(("~/"+PEACH_FOLDER+"sources/upgrade").c_str());
+        t=std::system(("wget -O ~/"+PEACH_FOLDER+"sources/upgrade https://raw.githubusercontent.com/RonOSLinux/Peach/master/sources/upgrade").c_str());
+        if(getNewVersion()!="") {
+          setModule("network",1);
+          if(getCurrentVersion()==getNewVersion()) {
+            upgrade_available=false;
+          } else {
+            upgrade_available=true;
+          }
+          scene=0;
+        }
       }
       no_btn->display();
       if(no_btn->getEvent()==2) {
