@@ -32,7 +32,7 @@ private:
 public:
   Panel() {
     create("Panel",Gui::dm.w/2-161/2,Gui::dm.h/2-268/2,161,268,SDL_WINDOW_BORDERLESS,{5,5,5,255});
-    setWindowOpacity(0.80f);
+    setWindowOpacity(0.85f);
     setDragSupport(true);
 
     old_date=getDate();
@@ -48,7 +48,6 @@ public:
   }
   void check() {}
   void draw() {
-    Gui::renderFillRect(0,0,161,2,Gui::hover_color);
     if(getTime()!=old_time) {
       ((Gui::Label*)get(0))->setText(getTime().c_str(),Gui::f_reg_big,{225,225,225});
       old_time=getTime();
@@ -85,7 +84,7 @@ int main(int argc,char* argv[]) {
   Gui::init();
   Gui::loadFonts("/usr/share/fonts/truetype/Roboto-Regular.ttf","/usr/share/fonts/truetype/Roboto-Light.ttf");
   SDL_GetCurrentDisplayMode(0,&Gui::dm);
-  Gui::normal_color={10,10,10,255};
+  Gui::normal_color={5,5,5,255};
   Gui::hover_color.a=255;
   Panel panel;
   Gui::quit();

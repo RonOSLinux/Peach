@@ -17,7 +17,6 @@ public:
   }
   void check(){}
   void draw() {
-    Gui::renderFillRect(0,0,665,2,Gui::hover_color);
     if(get(1)->getEvent()==2) {
       setEnd(true);
     } else if(get(2)->getEvent()==2) {
