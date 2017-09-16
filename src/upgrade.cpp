@@ -54,7 +54,6 @@ public:
   }
   void check() {}
   void draw() {
-    Gui::renderFillRect(0,0,870,2,Gui::hover_color);
     if(scene==0) {
       if(upgrade_available) {
         upgrade_text->display();

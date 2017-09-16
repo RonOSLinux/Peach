@@ -29,7 +29,7 @@ private:
 public:
   Software() {
     create("SoftwareExplorer",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,538,469,SDL_WINDOW_BORDERLESS,{5,5,5,255});
-    setWindowOpacity(0.9f);
+    setWindowOpacity(0.95f);
     setDragSupport(true);
     appf.init();
     sources::init();
@@ -71,7 +71,8 @@ public:
   }
   void check() {}
   void draw() {
-    Gui::renderFillRect(0,0,538,2,{0,185,235,255});
+    Gui::normal_color={15,15,15,195};
+    Gui::hover_color={35,35,35,255};
     if(!process) {
       if(get(0)->getEvent()==2) {
         setEnd(true);
@@ -141,7 +142,7 @@ public:
           no_app->display();
         } else {
           Gui::normal_color={15,15,15,195};
-          Gui::hover_color={35,35,35,255};
+          Gui::hover_color={20,20,20,255};
           app_img->display();
           app_name->setX(74);
           app_name->setY(406);

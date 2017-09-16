@@ -16,7 +16,7 @@ private:
 public:
   Apps() {
     create("Apps",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,538,400,SDL_WINDOW_BORDERLESS,{5,5,5,255});
-    setWindowOpacity(0.9f);
+    setWindowOpacity(0.95f);
     setDragSupport(true);
 
     add(new Gui::ExitBtn("/usr/share/fonts/truetype/Roboto-Thin.ttf",493,-7));
@@ -52,7 +52,6 @@ public:
   }
   void check() {}
   void draw() {
-    Gui::renderFillRect(0,0,538,2,{0,185,235,255});
     if(get(0)->getEvent()==2) {
       setEnd(true);
     }

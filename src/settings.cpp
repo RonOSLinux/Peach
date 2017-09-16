@@ -24,7 +24,6 @@ public:
   }
   void check() {}
   void draw() {
-    Gui::renderFillRect(0,0,304,2,Gui::hover_color);
     if(get(0)->getEvent()==2) {
       setEnd(true);
     }
