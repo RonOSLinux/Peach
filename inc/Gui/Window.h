@@ -79,7 +79,7 @@ public:
         }
       }
       SDL_RenderPresent(ren);
-      SDL_Delay(5);
+      SDL_Delay(15);
     } while(!end);
   }
   void add(Widget* w) {
