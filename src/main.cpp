@@ -43,53 +43,44 @@ int main(int argc,char* argv[]) {
     while(!end) {
       SDL_PollEvent(&e);
       SDL_GetGlobalMouseState(&mx,&my);
-      if(SDL_GetTicks()-timer>=650) {
-        if(SDL_BUTTON(SDL_GetGlobalMouseState(&mx,&my))<=0) {
-          if(mx==0&&my==0) {
-            active=1;
-            timer=SDL_GetTicks();
-          } else if(mx==dm.w-1&&my==0) {
-            active=2;
-            timer=SDL_GetTicks();
-          } else if(mx==0&&my==dm.h-1) {
-            active=3;
-            timer=SDL_GetTicks();
-          } else if(mx==dm.w-1&&my==dm.h-1) {
-            active=4;
-            timer=SDL_GetTicks();
-          } else if(mx>dm.w/2-368/2&&mx<(dm.w/2-368/2)+368&&my==0) {
-            active=5;
-            timer=SDL_GetTicks();
-          } else if(mx>dm.w/2-368/2&&mx<(dm.w/2-368/2)+368&&my==dm.h-1) {
-            if(active==1) {
-              if(getModule("apps")!=1) {
-                t=std::system(("~/"+PEACH_FOLDER+"bin/apps &").c_str());
-                setModule("apps",1);
-              }
-            } else if(active==2) {
-              if(getModule("software")!=1) {
-                t=std::system(("~/"+PEACH_FOLDER+"bin/software-explorer &").c_str());
-                setModule("software",1);
-              }
-            } else if(active==3) {
-              if(getModule("restart")!=1&&getModule("shutdown")!=1) {
-                t=std::system(("~/"+PEACH_FOLDER+"bin/restart &").c_str());
-                setModule("restart",1);
-              }
-            } else if(active==4) {
-              if(getModule("shutdown")!=1&&getModule("restart")!=1) {
-                t=std::system(("~/"+PEACH_FOLDER+"bin/shutdown &").c_str());
-                setModule("shutdown",1);
-              }
-            } else if(active==5) {
-              if(getModule("panel")==1) {
-                setModule("panel",2);
-              } else {
-                setModule("panel",1);
-              }
+      if(SDL_BUTTON(SDL_GetGlobalMouseState(&mx,&my))<=0) {
+        if(mx==0&&my==0) {
+          active=1;
+        } else if(mx==dm.w-1&&my==0) {
+          active=2;
+        } else if(mx==0&&my==dm.h-1) {
+          active=3;
+        } else if(mx==dm.w-1&&my==dm.h-1) {
+          active=4;
+        } else if(mx>dm.w/2-(dm.w*0.85)/2&&mx<(dm.w/2-(dm.w*0.85)/2)+(dm.w*0.85)&&my==0) {
+          active=5;
+        } else if(mx>dm.w/2-(dm.w*0.85)/2&&mx<(dm.w/2-(dm.w*0.85)/2)+(dm.w*0.85)&&my==dm.h-1) {
+          if(active==1) {
+            if(getModule("apps")!=1) {
+              t=std::system(("~/"+PEACH_FOLDER+"bin/apps &").c_str());
+              setModule("apps",1);
             }
-            active=0;
-            timer=SDL_GetTicks();
+          } else if(active==2) {
+            if(getModule("software")!=1) {
+              t=std::system(("~/"+PEACH_FOLDER+"bin/software-explorer &").c_str());
+              setModule("software",1);
+            }
+          } else if(active==3) {
+            if(getModule("restart")!=1&&getModule("shutdown")!=1) {
+              t=std::system(("~/"+PEACH_FOLDER+"bin/restart &").c_str());
+              setModule("restart",1);
+            }
+          } else if(active==4) {
+            if(getModule("shutdown")!=1&&getModule("restart")!=1) {
+              t=std::system(("~/"+PEACH_FOLDER+"bin/shutdown &").c_str());
+              setModule("shutdown",1);
+            }
+          } else if(active==5) {
+            if(getModule("panel")==1) {
+              setModule("panel",2);
+            } else {
+              setModule("panel",1);
+            }
           }
         }
       }
