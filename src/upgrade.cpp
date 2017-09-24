@@ -35,7 +35,7 @@ public:
     }
     create("Upgrade",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,870,165,SDL_WINDOW_BORDERLESS,{5,5,5,255});
     setWindowOpacity(0.95f);
-    setDragSupport(true);
+    setDragSupport(false);
     update_text=new Gui::Label("There is no Upgrade available, but you can still Update your packages.",Gui::f_light_med,{215,215,215},10,10);
     upgrade_text=new Gui::Label("There is an Upgrade available, the installation will take a while.",Gui::f_light_med,{215,215,215},10,10);
     continue_text=new Gui::Label("Do you want to continue?",Gui::f_reg_med,{215,215,215},10,50);

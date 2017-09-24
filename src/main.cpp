@@ -57,10 +57,10 @@ int main(int argc,char* argv[]) {
           } else if(mx==dm.w-1&&my==dm.h-1) {
             active=4;
             timer=SDL_GetTicks();
-          } else if(mx>dm.w/2-368/2&&mx<(dm.w/2-368/2)+368&&my==dm.h-1) {
+          } else if(mx>dm.w/2-368/2&&mx<(dm.w/2-368/2)+368&&my==0) {
             active=5;
             timer=SDL_GetTicks();
-          } else if(mx>dm.w/2-368/2&&mx<(dm.w/2-368/2)+368&&my==0) {
+          } else if(mx>dm.w/2-368/2&&mx<(dm.w/2-368/2)+368&&my==dm.h-1) {
             if(active==1) {
               if(getModule("apps")!=1) {
                 t=std::system(("~/"+PEACH_FOLDER+"bin/apps &").c_str());
